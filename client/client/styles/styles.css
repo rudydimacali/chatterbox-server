@@ -1,24 +1,45 @@
 body {
-    background: #eee;
+    background-image: url("https://www.xmple.com/wallpaper/gradient-blue-purple-linear-1920x1080-c2-800080-191970-a-210-f-14.svg");
     text-align: center;
     padding: 0 25px;
-    font-family: arial, sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+h1 {
+    font-size: 12px;
+    font-family: 'Charmonman', cursive;
+    margin-left: -40px;
+    color: rgb(67, 0, 112)
 }
 
 #main, #chats {
-    width: 500px;
-    margin: auto;
+    background-image: url("https://www.kcfootprints.org/cms/wp-content/uploads/2017/02/grey-repeating-background-5.jpg");
     text-align: left;
-    background: white;
+    width: 60%;
     padding: 50px 60px;
     border: solid #ddd;
     border-width: 0 1px 1px 1px;
+    border-radius: 25px;
+    box-shadow: 0 0 15px 10px rgb(67, 0, 112);
 }
 
+#main {
+    position: relative;
+    top: 10px;
+    margin: auto;
+}
+
+#chats {
+    margin: auto;
+    position: relative;
+    top: 75px;
+}
 #main h1 {
-    margin-top: 0;
-    font-size: 35px;
-    margin-bottom: 5px;
+    text-align: center;
+    margin: auto;
+    margin-top: -15px;
+    font-size: 58px;
+    margin-bottom: 55px;
     padding: 5px;
 }
 
@@ -69,6 +90,10 @@ form input[type=text] {
     font-weight: 800;
 }
 
+.username:hover {
+    color: gray;
+}
+
 .chat:hover {
     background-color: #ddd;
 }
@@ -84,7 +109,61 @@ form input[type=text] {
 }
 
 .friend {
-    color: #fff;
-    background-color: #0090da;
+    color: red/*rgb(135, 255, 151)*/;
 }
 
+.message {
+    word-wrap: break-word;
+}
+
+.messageBox {
+    background-color: rgba(0, 255, 221, 0.4);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    box-shadow: 0 0 15px 10px rgba(0, 255, 221, 0.8);
+}
+
+#profileBox {
+    position: relative;
+    
+}
+
+#profilePic {
+    float: right;
+    position: relative;
+    left: 25px;
+    bottom: 25px;
+    height: 15%;
+    width: 15%;
+    border-radius: 50%;
+}
+
+#profileMessages, #profileFriends {
+    color: rgba(0, 255, 221, 0.8);
+    font-size: 14px;
+    float: right;
+    position: relative;
+    top: 10px;
+    left: 90px;
+    margin-right: 10px;
+}
+
+#numProfileMessages, #numProfileFriends {
+    font-size: 12px;
+}
+
+#profileUsername {
+    font-size: 20px;
+    float: right;
+    position: relative;
+    left: 15px;
+    bottom: 15px;
+    color: rgba(0, 255, 221, 1);
+    font-weight: bold;
+}
+
+.friend {
+    color: rgb(215, 168, 255);
+    font-weight: bold;
+}
