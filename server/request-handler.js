@@ -31,6 +31,7 @@ var messages = {
     username: 'Jono',
     text: 'Do my bidding!',
     roomname: 'Initial Room',
+    objectId: 12345
   }]
 };
 
@@ -84,9 +85,10 @@ exports.requestHandler = function(request, response) {
       });
       request.on('end', function() {
         messages.results.push(JSON.parse(dataToWrite));
-        messages.results[messages.results.length-1]['objectId'] = Date.now();
+        // messages.results[messages.results.length-1]['objectId'] = Date.now();
+        console.log(messages);
         response.writeHead(201, headers);
-        response.end(JSON.stringify(messages));
+        response.end();
       });
     }
   }

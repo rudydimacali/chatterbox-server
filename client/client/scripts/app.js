@@ -21,7 +21,7 @@ var App = {
     setInterval(App.fetch, 3000);
   },
 
-  fetch: function(callback = ()=>{}) {
+  fetch: function(callback = ()=>{ return; }) {
     Parse.readAll((data) => {
       var parsedData = JSON.parse(data);
       console.log(parsedData);
