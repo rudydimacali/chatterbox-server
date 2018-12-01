@@ -92,4 +92,12 @@ describe('server', function() {
     });
   });
 
+  it('Should return roomnames for each message', function(done) {
+    request('http://127.0.0.1:3000/classes/messages', function(error, response, body) {
+      var messages = JSON.parse(body).results;
+      expect(messages[0].roomname).to.not.equal(undefined);
+      done();
+    });
+  });
+
 });
