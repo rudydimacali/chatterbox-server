@@ -31,6 +31,7 @@ var messages = {
 };
 
 exports.requestHandler = function(request, response) {
+
   // Request and Response come from node's http module.
   //
   // They include information about both the incoming request, such as
@@ -46,38 +47,43 @@ exports.requestHandler = function(request, response) {
   // debugging help, but you should always be careful about leaving stray
   // console.logs in your code.
   console.log('Serving request type ' + request.method + ' for url ' + request.url);
-
-  // The outgoing status.
-  var statusCode;
   
-  console.log(request);
-
-  if (request.url === '/classes/messages') {
-    if (request.method === 'GET') {
-      statusCode = 200;
-    } else if (request.method === 'POST') {
-      messages.results.push(request._postData);
-      statusCode = 201;
-    } else {
-      statusCode = 404;
-    }
-  } else {
-    statusCode = 404;
-  }
-
   // See the note below about CORS headers.
   var headers = defaultCorsHeaders;
-
+  
   // Tell the client we are sending them plain text.
   //
   // You will need to change this if you are sending something
   // other than plain text, like JSON or HTML.
   headers['Content-Type'] = 'application/JSON';
   
+  if (request.method === 'GET') {
+    if (request.url === '/classes/messages') {
+      response.writeHead(200, headers);
+      response.end(JSON.stringify(messages));
+    } else {
+      response.writeHead(404, headers);
+      response.end();
+    }
+  }
+  
+  if (request.method === 'POST') {
+    if (request.url === '/classes/messages') {
+      var dataToWrite;
+      request.on('data', function(data) {
+        dataToWrite = data.toString();
+      });
+      request.on('end', function() {
+        messages.results.push(JSON.parse(dataToWrite));
+        response.writeHead(201, headers);
+        response.end(JSON.stringify(messages));
+      });
+    }
+  }
   
   // .writeHead() writes to the request line and headers of the response,
   // which includes the status and all headers.
-  response.writeHead(statusCode, headers);
+  // response.writeHead(statusCode, headers);
   
   // Make sure to always call response.end() - Node may not send
   // anything back to the client until you do. The string you pass to
@@ -86,8 +92,8 @@ exports.requestHandler = function(request, response) {
   //
   // Calling .end "flushes" the response's internal buffer, forcing
   // node to actually send all the data over to the client.
+  // response.end(JSON.stringify(messages));
   
-  response.end(JSON.stringify(messages));
 };
 
 
