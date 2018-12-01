@@ -76,11 +76,20 @@ describe('server', function() {
   it('Should create a unique id for each message', function(done) {
     request('http://127.0.0.1:3000/classes/messages', function(error, response, body) {
       var messages = JSON.parse(body).results;
-      console.log(messages[0]);
       expect(messages[0].objectId).to.not.equal(undefined);
       done();
     });
-  });   
+  });
 
+  it('Should handle options requests', function(done) {
+    var requestParams = {method: 'OPTIONS',
+      uri: 'http://127.0.0.1:3000/classes/messages',
+    };
+    request(requestParams, function(error, response, body) {
+      expect(response.statusCode).to.equal(200);
+      expect(response.headers).to.not.equal(undefined);
+      done();
+    });
+  });
 
 });
