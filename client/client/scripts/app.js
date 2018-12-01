@@ -13,6 +13,7 @@ var App = {
 
     // Fetch initial batch of messages
     App.startSpinner();
+    // App.stopSpinner
     App.fetch(App.stopSpinner);
 
 
@@ -22,12 +23,12 @@ var App = {
 
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
-
+      var parsedData = JSON.parse(data);
+      console.log(parsedData);
       // Don't bother to update if we have no messages
-      if (!data.results || !data.results.length) { return; }
-
-      Rooms.update(data.results, RoomsView.render);
-      Messages.update(data.results, MessagesView.render);
+      if (!parsedData.results || !parsedData.results.length) { return; }
+      Rooms.update(parsedData.results, RoomsView.render);
+      Messages.update(parsedData.results, MessagesView.render);
       
       callback();
     });

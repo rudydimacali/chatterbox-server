@@ -14,24 +14,28 @@ var defaultCorsHeaders = {
   'access-control-max-age': 10 // Seconds.
 };
 /*************************************************************
-
-You should implement your request handler function in this file.
-
-requestHandler is already getting passed to http.createServer()
-in basic-server.js, but it won't work as is.
-
-You'll have to figure out a way to export this function from
-this file and include it in basic-server.js so that it actually works.
-
-*Hint* Check out the node module documentation at http://nodejs.org/api/modules.html.
-
-**************************************************************/
+ 
+ You should implement your request handler function in this file.
+ 
+ requestHandler is already getting passed to http.createServer()
+ in basic-server.js, but it won't work as is.
+ 
+ You'll have to figure out a way to export this function from
+ this file and include it in basic-server.js so that it actually works.
+ 
+ *Hint* Check out the node module documentation at http://nodejs.org/api/modules.html.
+ 
+ **************************************************************/
 var messages = {
-  results: []
+  results: [{
+    username: 'Jono',
+    text: 'Do my bidding!',
+    roomname: 'Initial Room',
+  }]
 };
 
 exports.requestHandler = function(request, response) {
-
+  
   // Request and Response come from node's http module.
   //
   // They include information about both the incoming request, such as
@@ -40,7 +44,7 @@ exports.requestHandler = function(request, response) {
   //
   // Documentation for both request and response can be found in the HTTP section at
   // http://nodejs.org/documentation/api/
-
+  
   // Do some basic logging.
   //
   // Adding more logging to your server can be an easy way to get passive
@@ -56,6 +60,11 @@ exports.requestHandler = function(request, response) {
   // You will need to change this if you are sending something
   // other than plain text, like JSON or HTML.
   headers['Content-Type'] = 'application/JSON';
+  
+  if (request.method === 'OPTIONS') {
+    response.writeHead(200, headers);
+    response.end();
+  }
   
   if (request.method === 'GET') {
     if (request.url === '/classes/messages') {
@@ -75,6 +84,7 @@ exports.requestHandler = function(request, response) {
       });
       request.on('end', function() {
         messages.results.push(JSON.parse(dataToWrite));
+        messages.results[messages.results.length-1]['objectId'] = Date.now();
         response.writeHead(201, headers);
         response.end(JSON.stringify(messages));
       });
