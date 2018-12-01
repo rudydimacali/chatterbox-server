@@ -1,45 +1,40 @@
 body {
-    background-image: url("https://www.xmple.com/wallpaper/gradient-blue-purple-linear-1920x1080-c2-800080-191970-a-210-f-14.svg");
+    background-image: url("https://images2.alphacoders.com/774/774372.jpg");
     text-align: center;
     padding: 0 25px;
     font-family: 'Josefin Sans', sans-serif;
 }
 
 h1 {
-    font-size: 12px;
     font-family: 'Charmonman', cursive;
     margin-left: -40px;
-    color: rgb(67, 0, 112)
+    color: rgba(0, 255, 221, 0.65)
 }
 
 #main, #chats {
-    background-image: url("https://www.kcfootprints.org/cms/wp-content/uploads/2017/02/grey-repeating-background-5.jpg");
+    background-image: url("https://image.freepik.com/free-vector/grey-abstract-background_1077-4.jpg");
+    width: 500px;
     text-align: left;
-    width: 60%;
     padding: 50px 60px;
     border: solid #ddd;
     border-width: 0 1px 1px 1px;
     border-radius: 25px;
-    box-shadow: 0 0 15px 10px rgb(67, 0, 112);
+    box-shadow: 0 0 15px 10px rgb(112, 112, 112);
 }
 
 #main {
     position: relative;
     top: 10px;
-    margin: auto;
 }
 
 #chats {
     margin: auto;
     position: relative;
     top: 75px;
-    color: midnightblue;
 }
 #main h1 {
-    text-align: center;
-    margin: auto;
     margin-top: -15px;
-    font-size: 58px;
+    font-size: 35px;
     margin-bottom: 55px;
     padding: 5px;
 }
